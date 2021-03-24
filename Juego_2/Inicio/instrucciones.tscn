@@ -41,7 +41,7 @@ __meta__ = {
 [node name="volver" type="Button" parent="Control/VBoxContainer"]
 margin_right = 178.0
 margin_bottom = 21.0
-text = "Volver"
+text = "Juego"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
 anchor_top = 1.0

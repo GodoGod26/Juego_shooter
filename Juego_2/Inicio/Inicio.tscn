@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/bladesingerexpandital.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Inicio/clone wars.jpg" type="Texture" id=2]
+[ext_resource path="res://Mi_video.webm" type="VideoStream" id=2]
 [ext_resource path="res://Inicio/Inicio.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -14,7 +14,7 @@ default_font = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 3 )
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="VideoPlayer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -25,7 +25,8 @@ margin_right = 512.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 1024, 600 )
 theme = SubResource( 2 )
-texture = ExtResource( 2 )
+stream = ExtResource( 2 )
+autoplay = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -63,6 +64,7 @@ margin_bottom = 113.0
 custom_colors/font_color = Color( 0, 0.109804, 1, 1 )
 custom_colors/font_color_hover = Color( 0, 0.0392157, 1, 1 )
 text = "Salir"
+[connection signal="finished" from="NinePatchRect" to="." method="_on_NinePatchRect_finished"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Instrucciones" to="." method="_on_Instrucciones_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Siguiente" to="." method="_on_Siguiente_pressed"]
 [connection signal="pressed" from="NinePatchRect/VBoxContainer/Salir" to="." method="_on_Salir_pressed"]

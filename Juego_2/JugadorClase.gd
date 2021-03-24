@@ -10,6 +10,13 @@ const minBlendSpeed=0.125
 const blendCorrer=0.075
 const blendIniciar=0.01
 const velDisparo=50
+var iniciarDisparo=true
+
+func dispararAhora():
+	if iniciarDisparo==true:
+		disparar()
+		iniciarDisparo=false
+		$ControlCamara/ControlHorizontal/ControlVertical/Timer.start()
 
 func disparar():
 	var disparos=load("res://Disparos/DisparoClase.tscn").instance()
@@ -20,7 +27,7 @@ func disparar():
 
 func _input(event):
 	if Input.is_action_pressed("Disparar"):
-		disparar()
+		dispararAhora()
 
 
 func _physics_process(delta):
@@ -63,3 +70,7 @@ func animacionTree():
 	moverEstado=clamp(moverEstado,0,1)	
 	var animacionJ=$Animated_Human/AnimationTree
 	animacionJ["parameters/Mover/blend_amount"]=moverEstado
+
+
+func _on_Timer_timeout():
+	iniciarDisparo = true
