@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Enemigos/Black.material" type="Material" id=1]
 [ext_resource path="res://Enemigos/Main.material" type="Material" id=2]
 [ext_resource path="res://Enemigos/Grey.material" type="Material" id=3]
+[ext_resource path="res://KBEnemigo.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Robot_Dance"
@@ -3024,7 +3025,10 @@ extents = Vector3( 1, 1.53269, 1 )
 
 [node name="Robot" type="Spatial"]
 
-[node name="RobotArmature" type="Skeleton" parent="."]
+[node name="KinematicBody" type="KinematicBody" parent="."]
+script = ExtResource( 4 )
+
+[node name="RobotArmature" type="Skeleton" parent="KinematicBody"]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 4.76837e-07, 0, 0, 0, -1, -4.76837e-07, 1, 0, -0.00319546, -0.00588517, -0.195048 )
@@ -3241,7 +3245,7 @@ bones/42/rest = Transform( 1, -6.08012e-07, 1.348e-07, 6.15751e-07, 0.932863, -0
 bones/42/enabled = true
 bones/42/bound_children = [ NodePath("BoneAttachment008") ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RobotArmature"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody/RobotArmature"]
 autoplay = "Robot_Running"
 anims/Robot_Dance = SubResource( 1 )
 anims/Robot_Idle = SubResource( 2 )
@@ -3253,131 +3257,135 @@ anims/Robot_Sitting = SubResource( 7 )
 anims/Robot_ThumbsUp = SubResource( 8 )
 anims/Robot_WalkJump = SubResource( 9 )
 
-[node name="BoneAttachment" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.0336137, 0.971919, -0.232902, -0.957012, 0.0984743, 0.27282, 0.288093, 0.21372, 0.933448, 0.677955, 2.8132, -0.134088 )
 bone_name = "UpperArm.L"
 
-[node name="ArmL" type="MeshInstance" parent="RobotArmature/BoneAttachment"]
+[node name="ArmL" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment"]
 transform = Transform( -0.0609919, 0.0680626, 0.995815, 0.0130631, 0.997641, -0.0673872, -0.998053, 0.00889862, -0.0617371, 0.0351455, -0.0759337, 1.3251 )
 mesh = SubResource( 10 )
 material/0 = null
 
-[node name="BoneAttachment001" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment001" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.03312, -0.93539, 0.352062, -0.736404, 0.215321, 0.641363, -0.67573, -0.280501, -0.681694, -0.594602, 2.87936, 0.118694 )
 bone_name = "UpperArm.R"
 
-[node name="ArmR" type="MeshInstance" parent="RobotArmature/BoneAttachment001"]
+[node name="ArmR" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment001"]
 transform = Transform( -0.0135961, -0.0601616, -0.218502, -0.00644642, 0.218909, -0.0598725, 0.226541, 0.00261857, -0.0148173, -0.00794101, -0.00472558, 0.240299 )
 mesh = SubResource( 11 )
 material/0 = null
 
-[node name="BoneAttachment002" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment002" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( -1, 2.15749e-07, -2.93496e-07, 3.46028e-07, 0.814378, -0.580334, 1.1381e-07, -0.580334, -0.814378, 0.633527, 0.911695, 0.770525 )
 bone_name = "Foot.L"
 
-[node name="FootL" type="MeshInstance" parent="RobotArmature/BoneAttachment002"]
+[node name="FootL" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment002"]
 transform = Transform( -1, 2.0612e-07, 3.00337e-07, 2.15749e-07, 0.999474, 0.0324217, -2.93497e-07, 0.0324217, -0.999474, 0.00946879, 0.383445, 0.00866596 )
 mesh = SubResource( 12 )
 material/0 = null
 
-[node name="BoneAttachment003" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment003" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( -1, 1.64626e-06, -2.93496e-07, -1.62452e-06, -0.914774, 0.403965, 3.96548e-07, 0.403965, 0.914775, -0.640077, 1.71671, -1.38683 )
 bone_name = "Foot.R"
 
-[node name="FootR" type="MeshInstance" parent="RobotArmature/BoneAttachment003"]
+[node name="FootR" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment003"]
 transform = Transform( -1, 1.63588e-06, 3.46717e-07, 1.64626e-06, 0.999474, 0.0324216, -2.93497e-07, 0.0324215, -0.999474, -0.00207841, 0.383445, 0.00866601 )
 mesh = SubResource( 13 )
 material/0 = null
 
-[node name="HandL" type="MeshInstance" parent="RobotArmature"]
+[node name="HandL" type="MeshInstance" parent="KinematicBody/RobotArmature"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00271564, 2.3703, -0.0209941 )
 mesh = SubResource( 14 )
 material/0 = null
 material/1 = null
 
-[node name="HandR" type="MeshInstance" parent="RobotArmature"]
+[node name="HandR" type="MeshInstance" parent="KinematicBody/RobotArmature"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00271564, 2.3703, -0.0209941 )
 mesh = SubResource( 15 )
 material/0 = null
 material/1 = null
 
-[node name="BoneAttachment004" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment004" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.994921, 0.0786061, -0.0628788, -0.0651519, 0.0266935, -0.997518, -0.0767326, 0.996548, 0.0316793, 0.117991, 3.52595, -0.00794379 )
 bone_name = "Head"
 
-[node name="Head" type="MeshInstance" parent="RobotArmature/BoneAttachment004"]
+[node name="Head" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment004"]
 transform = Transform( 0.999996, 0.00280537, 0.000109052, -5.63913e-05, -0.0187638, 0.999824, 0.00280694, -0.99982, -0.0187636, -0.000895768, 0.0363968, 0.460661 )
 mesh = SubResource( 16 )
 material/0 = null
 material/1 = null
 material/2 = null
 
-[node name="BoneAttachment005" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment005" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.919356, -0.353713, -0.172272, -0.258883, -0.873613, 0.412081, -0.296252, -0.334261, -0.894718, 0.6277, 1.98864, -0.188653 )
 bone_name = "UpperLeg.L"
 
-[node name="LegL" type="MeshInstance" parent="RobotArmature/BoneAttachment005"]
+[node name="LegL" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment005"]
 transform = Transform( 0.999981, 0.0019989, 0.00578751, 0.0060776, -0.209273, -0.977831, -0.000743432, 0.977856, -0.209281, -0.00673997, -0.0028694, 0.278528 )
 mesh = SubResource( 17 )
 material/0 = null
 
-[node name="BoneAttachment006" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment006" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.936026, 0.329576, 0.123451, -0.344852, 0.788961, 0.50858, 0.0702176, -0.518636, 0.852121, -0.619012, 2.06833, 0.0591836 )
 bone_name = "UpperLeg.R"
 
-[node name="LegR" type="MeshInstance" parent="RobotArmature/BoneAttachment006"]
+[node name="LegR" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment006"]
 transform = Transform( 0.999981, 0.00187101, 0.00586685, 0.00610584, -0.177769, -0.984027, -0.000798226, 0.984071, -0.177774, 0.00534528, 0.00620937, 0.278489 )
 mesh = SubResource( 18 )
 material/0 = null
 
-[node name="BoneAttachment007" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment007" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.919356, -0.378557, 0.107169, -0.258883, -0.376986, 0.889321, -0.296252, -0.845346, -0.44457, 0.73296, 1.73686, 0.358026 )
 bone_name = "LowerLeg.L"
 
-[node name="LowerLegL" type="MeshInstance" parent="RobotArmature/BoneAttachment007"]
+[node name="LowerLegL" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment007"]
 transform = Transform( 0.999981, 0.00199892, 0.00578753, 0.00530054, 0.190558, -0.981655, -0.00306512, 0.981674, 0.19054, -0.00681788, -0.252089, 0.428879 )
 mesh = SubResource( 19 )
 material/0 = null
 
-[node name="BoneAttachment008" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment008" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.936026, 0.347025, -0.0585942, -0.344852, 0.937643, 0.0440217, 0.0702174, -0.0210266, 0.997322, -0.694442, 1.75758, -0.461468 )
 bone_name = "LowerLeg.R"
 
-[node name="LowerLegR" type="MeshInstance" parent="RobotArmature/BoneAttachment008"]
+[node name="LowerLegR" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment008"]
 transform = Transform( 0.999981, 0.0018711, 0.00586634, 0.00540192, 0.190626, -0.981623, -0.00295496, 0.981662, 0.1906, 0.00470811, -0.251994, 0.428859 )
 mesh = SubResource( 20 )
 material/0 = null
 
-[node name="BoneAttachment009" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment009" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( -0.918576, 0.194197, -0.344245, -0.3532, -0.0124136, 0.935466, 0.177391, 0.980883, 0.0799937, 0.649026, 2.89181, -0.127366 )
 bone_name = "Shoulder.L"
 
-[node name="ShoulderL" type="MeshInstance" parent="RobotArmature/BoneAttachment009"]
+[node name="ShoulderL" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment009"]
 transform = Transform( -0.0259367, -0.999663, -1.91543e-06, 2.36749e-07, -1.89122e-06, 1, -0.999664, 0.0259366, 2.87778e-07, -0.000380754, -0.00415096, 0.0850191 )
 mesh = SubResource( 21 )
 material/0 = null
 
-[node name="BoneAttachment010" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment010" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( -0.85118, 0.194197, 0.487626, 0.494917, -0.0124125, 0.868851, 0.174781, 0.980884, -0.0855466, -0.544777, 2.96814, 0.109953 )
 bone_name = "Shoulder.R"
 
-[node name="ShoulderR" type="MeshInstance" parent="RobotArmature/BoneAttachment010"]
+[node name="ShoulderR" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment010"]
 transform = Transform( -0.00985816, 0.999951, -1.1798e-06, -2.69271e-07, 1.21966e-06, 1, 0.999952, 0.00985828, 2.583e-07, 0.000352144, -0.00415096, 0.102509 )
 mesh = SubResource( 22 )
 material/0 = null
 
-[node name="BoneAttachment011" type="BoneAttachment" parent="RobotArmature"]
+[node name="BoneAttachment011" type="BoneAttachment" parent="KinematicBody/RobotArmature"]
 transform = Transform( 0.978886, 0.194199, -0.0637856, -0.0625663, -0.0124124, -0.997964, -0.194596, 0.980883, -2.05009e-08, 0.0420345, 1.92965, 0.112672 )
 bone_name = "Body"
 
-[node name="Torso" type="MeshInstance" parent="RobotArmature/BoneAttachment011"]
+[node name="Torso" type="MeshInstance" parent="KinematicBody/RobotArmature/BoneAttachment011"]
 transform = Transform( 1, 0, -7.15256e-07, 7.15256e-07, 0, 1, 0, -1, 0, -0.00476612, -0.132253, -0.490335 )
 mesh = SubResource( 23 )
 material/0 = null
 material/1 = null
 
-[node name="Position3D" type="Position3D" parent="."]
+[node name="Position3D" type="Position3D" parent="KinematicBody"]
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21753, 0 )
 shape = SubResource( 24 )
+
+[node name="Timer" type="Timer" parent="KinematicBody"]
+
+[node name="RayCast" type="RayCast" parent="KinematicBody"]
