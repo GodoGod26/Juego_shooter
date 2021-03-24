@@ -29,3 +29,7 @@ transform = Transform( -0.999891, 0, 0.0147648, 0, 1, 0, -0.0147648, 0, -0.99989
 
 [node name="Frente" type="Position3D" parent="ControlCamara/ControlHorizontal/ControlVertical"]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.0426564, 3.48007, 1.82652 )
+
+[node name="Timer" type="Timer" parent="ControlCamara/ControlHorizontal/ControlVertical"]
+one_shot = true
+[connection signal="timeout" from="ControlCamara/ControlHorizontal/ControlVertical/Timer" to="." method="_on_Timer_timeout"]

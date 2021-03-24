@@ -30,21 +30,21 @@ tracks/0/keys = {
 [node name="Escena_juego" type="Spatial"]
 
 [node name="JugadorClase" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18889, 0 )
+transform = Transform( -0.999992, 0, -0.00403156, 0, 1, 0, 0.00403156, 0, -0.999992, 0, 0.18889, 27.139 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 25.3039, 0, 0, 0, 0.0479277, 0, 0, 0, 13.0176, 0, 0, 0 )
+transform = Transform( 25.3039, 0, 0, 0, 0.0479277, 0, 0, 0, 13.0176, 0, 0, 17.4578 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 25.3039, 0, 0, 0, 0.0479277, 0, 0, 0, 13.0176, 0, 0, 0 )
+transform = Transform( 25.3039, 0, 0, 0, 0.0479277, 0, 0, 0, 13.0176, 0, 0, 17.4835 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="Robot" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.9996, 0, -0.028288, 0, 1, 0, 0.028288, 0, -0.9996, -5.59855, 0, 9.35538 )
+transform = Transform( 0.998736, 0, 0.0502618, 0, 1, 0, -0.0502618, 0, 0.998736, -5.59855, 0, 9.35538 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Robot"]
 autoplay = "Animu"
