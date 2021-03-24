@@ -12,3 +12,8 @@ func _on_Salir_pressed():
 
 func _on_Siguiente_pressed():
 	get_tree().change_scene("res://Inicio/Escena_juego.tscn")
+
+
+func _on_NinePatchRect_finished():
+	get_tree().change_scene("res://Inicio/Control_Instrucciones.tscn")
+
