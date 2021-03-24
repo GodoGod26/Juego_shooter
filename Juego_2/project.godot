@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SHOOTER_MAESTRA"
+run/main_scene="res://Inicio/Inicio.tscn"
 config/icon="res://icon.png"
 
 [input]
