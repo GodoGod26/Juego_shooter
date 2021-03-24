@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/bladesingerexpandital.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Inicio/clone wars.jpg" type="Texture" id=2]
+[ext_resource path="res://Inicio/Inicio.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
+theme = SubResource( 2 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -35.5
+margin_bottom = 35.5
+rect_min_size = Vector2( 650, 650 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instrucciones" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 35.0
+custom_colors/font_color_disabled = Color( 0, 0.180392, 1, 1 )
+custom_colors/font_color = Color( 0, 0.0627451, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Instrucciones"
+
+[node name="Siguiente" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 39.0
+margin_right = 1024.0
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0, 0.0470588, 1, 1 )
+text = "Siguiente"
+
+[node name="Salir" type="Button" parent="NinePatchRect/VBoxContainer"]
+margin_top = 78.0
+margin_right = 1024.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0, 0.109804, 1, 1 )
+custom_colors/font_color_hover = Color( 0, 0.0392157, 1, 1 )
+text = "Salir"
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Instrucciones" to="." method="_on_Instrucciones_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Siguiente" to="." method="_on_Siguiente_pressed"]
+[connection signal="pressed" from="NinePatchRect/VBoxContainer/Salir" to="." method="_on_Salir_pressed"]

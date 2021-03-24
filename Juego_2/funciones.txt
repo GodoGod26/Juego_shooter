@@ -1,0 +1,21 @@
+func movimiento():
+	var moverDir=moverDosDireccion()
+	var dirCamara=Vector3.ZERO	
+	var camaraX=$controlCamara/controlHorizontal/controlVertical/Camera.global_transform
+	
+	dirCamara -= camaraX.basis.z.normalized()*moverDir.x
+	dirCamara += camaraX.basis.x.normalized()*moverDir.y
+	
+	movJugador=dirCamara
+	
+	move_and_slide(movJugador * avance,up)
+	
+func moverDosDireccion():	
+	var x=Input.get_action_strength("abajoJugador%s"%numJugador)-Input.get_action_strength("arribaJugador%s"%numJugador)
+	var y=Input.get_action_strength("derJugador%s"%numJugador)-Input.get_action_strength("izqJugador%s"%numJugador)
+		
+	var movDir=Vector2(x,y)
+	
+	if not movDir== Vector2.ZERO:
+			moverCaraTree(x,y)
+	return movDir.normalized()		
